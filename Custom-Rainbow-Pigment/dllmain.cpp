@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <fstream>
 #include <vector>
-
+#include <filesystem>
 #include "loader.h"
 using namespace loader;
 using json = nlohmann::json;
@@ -78,7 +78,10 @@ bool apply(byte* ptr, std::vector<byte> replace) {
 }
 void onLoad()
 {
-    std::ifstream file("nativePC/plugins/CustomRainbowPreset.json");
+    std::string root;
+    if (std::filesystem::exists("ICE")) { root = "ICE/ntPC"; }
+    else { root = "nativePC"; }
+    std::ifstream file(root + "plugins/CustomRainbowPreset.json");
     std::vector<color> colors;
     if (file.fail()) {
         LOG(ERR) << "Custom Rainbow Pigment : Preset file not found!";
