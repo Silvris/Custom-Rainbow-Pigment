@@ -79,8 +79,9 @@ bool apply(byte* ptr, std::vector<byte> replace) {
 void onLoad()
 {
     std::string root;
-    if (std::filesystem::exists("ICE")) { root = "ICE/ntPC"; }
-    else { root = "nativePC"; }
+    if (std::filesystem::exists("ICE")) { root = "ICE/ntPC/"; }
+    else { root = "nativePC/"; }
+
     std::ifstream file(root + "plugins/CustomRainbowPreset.json");
     std::vector<color> colors;
     if (file.fail()) {
